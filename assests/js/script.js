@@ -1,6 +1,7 @@
 let timeRem = 0;
 let score = 0;
 let qNum = 0;
+let correctAns = "";
 let startBtnEl = document.querySelector("#start-btn");
 let timeEl = document.querySelector("#timer");
 timeEl.textContent = timeRem;
@@ -75,7 +76,6 @@ const quizzing = () => {
   console.log(qNum);
   if (qNum > 3 || timeRem <= 0) {
     endScreen();
-    return;
   }
 
   questionTitleEl.textContent = quizQuestions[qNum].q;
@@ -83,67 +83,20 @@ const quizzing = () => {
   ansOption2El.textContent = quizQuestions[qNum].aOp.a2;
   ansOption3El.textContent = quizQuestions[qNum].aOp.a3;
   ansOption4El.textContent = quizQuestions[qNum].aOp.a4;
-  let correctAns = quizQuestions[qNum].a;
+  correctAns = quizQuestions[qNum].a;
+};
 
-  ansOption1El.addEventListener("click", () => {
-    console.log("1 clicked");
-    if (correctAns === "a1") {
-      score++;
-      qNum = qNum + 1;
-      document.querySelector("#right-or-wrong").textContent = "CORRECT!";
-      quizzing();
-    } else {
-      qNum = qNum + 1;
-      timeRem = timeRem - 10;
-      document.querySelector("#right-or-wrong").textContent = "INCORRECT!";
-      quizzing();
-    }
-  });
-  ansOption2El.addEventListener("click", () => {
-    console.log("2 clicked");
-
-    if (correctAns === "a2") {
-      score++;
-      qNum = qNum + 1;
-      document.querySelector("#right-or-wrong").textContent = "CORRECT!";
-      quizzing();
-    } else {
-      qNum = qNum + 1;
-      timeRem = timeRem - 10;
-      document.querySelector("#right-or-wrong").textContent = "INCORRECT!";
-      quizzing();
-    }
-  });
-  ansOption3El.addEventListener("click", () => {
-    console.log("3 clicked");
-
-    if (correctAns === "a3") {
-      score++;
-      qNum = qNum + 1;
-      document.querySelector("#right-or-wrong").textContent = "CORRECT!";
-      quizzing();
-    } else {
-      qNum = qNum + 1;
-      timeRem = timeRem - 10;
-      document.querySelector("#right-or-wrong").textContent = "INCORRECT!";
-      quizzing();
-    }
-  });
-  ansOption4El.addEventListener("click", () => {
-    console.log("4 clicked");
-
-    if (correctAns === "a4") {
-      score++;
-      qNum = qNum + 1;
-      document.querySelector("#right-or-wrong").textContent = "CORRECT!";
-      quizzing();
-    } else {
-      qNum = qNum + 1;
-      timeRem = timeRem - 10;
-      document.querySelector("#right-or-wrong").textContent = "INCORRECT!";
-      quizzing();
-    }
-  });
+const checkAnswer = (correctAns, inputAns) => {
+  if (correctAns === inputAns) {
+    score++;
+    qNum++;
+    document.querySelector("#right-or-wrong").textContent = "CORRECT!";
+  } else {
+    qNum++;
+    timeRem = timeRem - 10;
+    document.querySelector("#right-or-wrong").textContent = "INCORRECT!";
+  }
+  quizzing();
 };
 
 const endScreen = () => {
@@ -153,3 +106,15 @@ const endScreen = () => {
 };
 
 startBtnEl.addEventListener("click", startQuiz);
+ansOption1El.addEventListener("click", () => {
+  checkAnswer(correctAns, "a1");
+});
+ansOption2El.addEventListener("click", () => {
+  checkAnswer(correctAns, "a2");
+});
+ansOption3El.addEventListener("click", () => {
+  checkAnswer(correctAns, "a3");
+});
+ansOption4El.addEventListener("click", () => {
+  checkAnswer(correctAns, "a4");
+});
