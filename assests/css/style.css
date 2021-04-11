@@ -1,7 +1,33 @@
+* {
+  margin: 8px 8px;
+}
+
+header {
+  text-align: right;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
 .question-area {
   display: none;
 }
 
 .end-area {
   display: none;
+}
+
+button {
+  background-color: rgb(53, 28, 117);
+  color: white;
+  width: 95px;
+  height: 35px;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: blueviolet;
 }

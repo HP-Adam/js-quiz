@@ -67,7 +67,7 @@ const startQuiz = () => {
   }, 1000);
 
   document.querySelector("#start-area").style.display = "none";
-  document.querySelector("#question-area").style.display = "flex";
+  document.querySelector("#question-area").style.display = "block";
 
   quizzing();
 };
@@ -101,7 +101,7 @@ const checkAnswer = (correctAns, inputAns) => {
 
 const endScreen = () => {
   document.querySelector("#question-area").style.display = "none";
-  document.querySelector("#end-area").style.display = "flex";
+  document.querySelector("#end-area").style.display = "block";
   document.querySelector("#end-score").textContent = score;
 };
 
